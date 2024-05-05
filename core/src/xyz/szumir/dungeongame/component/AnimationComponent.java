@@ -8,11 +8,11 @@ import xyz.szumir.dungeongame.helper.Anim;
 
 import java.util.HashMap;
 
+@Setter
 public class AnimationComponent implements Component {
     private HashMap<AnimationType, Anim> animations = new HashMap<>();
-    public float state = 0;
-    @Setter
     private AnimationType currentAnimation = AnimationType.IDLE;
+    public float state = 0;
 
     public void update(float deltaTime) {
         state += deltaTime;
