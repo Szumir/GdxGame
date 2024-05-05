@@ -12,17 +12,12 @@ import xyz.szumir.dungeongame.system.*;
 
 public class GameScreen implements Screen {
 
-    private SpriteBatch spriteBatch;
-    private Texture texture = new Texture("assets/badlogic.jpg");
-
     private OrthographicCamera camera;
     private World world;
-    Engine engine = new Engine();
+    private Engine engine = new Engine();
 
     @Override
     public void show() {
-        spriteBatch = new SpriteBatch();
-
         world = new World(new Vector2(0,0), true);
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1280,720);
@@ -35,9 +30,6 @@ public class GameScreen implements Screen {
         engine.addSystem(new PhysicSystem(world));
         engine.addSystem(new AnimationSystem());
         engine.addSystem(new MovementSystem());
-
-
-
     }
 
     @Override
@@ -45,18 +37,17 @@ public class GameScreen implements Screen {
         engine.update(delta);
     }
 
-    @Override public void resize(int width, int height) {
-
-    }
-
-    @Override public void pause() { }
-
-    @Override public void resume() { }
-
-    @Override public void hide() { }
+    @Override
+    public void resize(int width, int height) { }
 
     @Override
-    public void dispose() {
+    public void pause() { }
 
-    }
+    @Override
+    public void resume() { }
+
+    @Override
+    public void hide() { }
+    @Override
+    public void dispose() { }
 }

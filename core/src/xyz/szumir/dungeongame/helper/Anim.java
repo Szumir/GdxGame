@@ -8,14 +8,13 @@ import lombok.Getter;
 @Getter
     public class Anim {
 
-        Texture sheet;
-        int xOffset, yOffset;
-        int columns, rows;
-        int animationWidth, animationHeight;
-        float frameDuration;
-        Animation<TextureRegion> animation;
-
-        Animation.PlayMode playMode;
+        private final Texture sheet;
+        private final int xOffset, yOffset;
+        private final int columns, rows;
+        private final int animationWidth, animationHeight;
+        private final float frameDuration;
+        private final Animation.PlayMode playMode;
+         private Animation<TextureRegion> animation;
 
         public Anim(Texture sheet, int xOffset, int yOffset, int animationWidth, int animationHeight, int columns, int rows, float frameDuration, Animation.PlayMode playMode) {
             this.sheet = sheet;

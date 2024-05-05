@@ -25,9 +25,11 @@ public class BodyFactory {
         ImageComponent imageComponent = new ImageComponent();
         TransformComponent transformComponent = new TransformComponent();
         BodyComponent bodyComponent = new BodyComponent();
-        Anim anim = new Anim( Assets.get("player.png", Texture.class),
+
+        Texture texture = Assets.get("player.png", Texture.class);
+        Anim anim = new Anim(texture,
                 4, 2, 1, 1, 8, 12, 0.2F, Animation.PlayMode.LOOP_PINGPONG);
-        Anim walk = new Anim( Assets.get("player.png", Texture.class),
+        Anim walk = new Anim(texture,
                 2, 1, 1, 3, 8, 12, 0.2F, Animation.PlayMode.LOOP_PINGPONG);
 
         animationComponent.addAnimation(AnimationComponent.AnimationType.IDLE, anim);

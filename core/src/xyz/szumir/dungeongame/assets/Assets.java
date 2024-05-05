@@ -11,6 +11,7 @@ public class Assets {
 
     private static AssetManager manager = new AssetManager();
     private static HashMap<String, Object> pixMap = new HashMap<>();
+
     public static void load() {
         manager.load("player.png", Texture.class);
         manager.finishLoading();

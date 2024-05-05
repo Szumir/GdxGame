@@ -12,7 +12,7 @@ public class AnimationComponent implements Component {
     private HashMap<AnimationType, Anim> animations = new HashMap<>();
     public float state = 0;
     @Setter
-    AnimationType currentAnimation = AnimationType.IDLE;
+    private AnimationType currentAnimation = AnimationType.IDLE;
 
     public void update(float deltaTime) {
         state += deltaTime;
