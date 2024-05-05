@@ -20,8 +20,11 @@ public class CameraSystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
         TransformComponent transform = entity.getComponent(TransformComponent.class);
 
-        camera.position.x = (int)transform.position.x;
-        camera.position.y = (int)transform.position.y;
+        camera.position.set(
+                (int)transform.position.x,
+                (int)transform.position.y,
+                camera.position.z
+        );
         camera.update();
     }
 }

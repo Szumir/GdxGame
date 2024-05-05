@@ -14,7 +14,7 @@ import lombok.Getter;
         private final int animationWidth, animationHeight;
         private final float frameDuration;
         private final Animation.PlayMode playMode;
-         private Animation<TextureRegion> animation;
+        private Animation<TextureRegion> animation;
 
         public Anim(Texture sheet, int xOffset, int yOffset, int animationWidth, int animationHeight, int columns, int rows, float frameDuration, Animation.PlayMode playMode) {
             this.sheet = sheet;
@@ -28,7 +28,7 @@ import lombok.Getter;
             this.playMode = playMode;
             initAnimation();
         }
-        void initAnimation() {
+        private void initAnimation() {
             TextureRegion[][] tmp = TextureRegion.split(sheet,
                     sheet.getWidth() / columns,
                     sheet.getHeight() / rows);
