@@ -14,6 +14,7 @@ public class Assets {
 
     public static void load() {
         manager.load("player.png", Texture.class);
+        manager.load("items/chest_closed.png", Texture.class);
         manager.finishLoading();
     }
 

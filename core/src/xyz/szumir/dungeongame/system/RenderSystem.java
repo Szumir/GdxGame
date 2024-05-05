@@ -1,6 +1,7 @@
 package xyz.szumir.dungeongame.system;
 
 import com.badlogic.ashley.core.ComponentMapper;
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
@@ -10,6 +11,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import xyz.szumir.dungeongame.component.BodyComponent;
@@ -36,7 +39,10 @@ public class RenderSystem extends IteratingSystem {
 
     private OrthographicCamera camera;
 
-    public RenderSystem(OrthographicCamera camera) {
+    private Box2DDebugRenderer debugRenderer;
+    private World world;
+
+    public RenderSystem(OrthographicCamera camera, Engine engine, World world) {
         super(Family.all(TransformComponent.class, ImageComponent.class).get());
 
         this.camera = camera;
@@ -48,6 +54,11 @@ public class RenderSystem extends IteratingSystem {
         this.zComparator = new ZComparator();
         this.transformMap = ComponentMapper.getFor(TransformComponent.class);
         this.imageMap = ComponentMapper.getFor(ImageComponent.class);
+        this.world = world;
+
+        this.debugRenderer = new Box2DDebugRenderer();
+
+        new EntitySpawnSystem(engine, world, tiledMap);
     }
 
 
@@ -69,9 +80,14 @@ public class RenderSystem extends IteratingSystem {
             ImageComponent image = imageMap.get(entity);
             if(image.image == null) continue;
 
-            spriteBatch.draw(image.image, t.position.x, t.position.y, image.image.getRegionWidth()*Constants.SCALE, image.image.getRegionHeight()*Constants.SCALE);
+            float width = image.image.getRegionWidth()*Constants.SCALE;
+            float height = image.image.getRegionHeight()*Constants.SCALE;
+            spriteBatch.draw(image.image, t.position.x-(width/2), t.position.y-(height/2), width, height);
         }
         spriteBatch.end();
+
+        debugRenderer.render(world, camera.combined.scl(Constants.PPM));
+
     }
 
     @Override

@@ -23,9 +23,7 @@ public class GameScreen implements Screen {
         camera.setToOrtho(false, 1280,720);
         camera.translate(256,0);
 
-        engine.addEntity(BodyFactory.createPlayer(engine, world, 0,0, 28,32));
-
-        engine.addSystem(new RenderSystem(camera));
+        engine.addSystem(new RenderSystem(camera, engine, world));
         engine.addSystem(new CameraSystem(camera));
         engine.addSystem(new PhysicSystem(world));
         engine.addSystem(new AnimationSystem());
