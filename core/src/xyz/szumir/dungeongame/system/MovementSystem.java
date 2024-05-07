@@ -40,6 +40,7 @@ public class MovementSystem extends IteratingSystem {
                     vel[0] * speed,
                     vel[1] * speed
             );
+
                 animationComponent.setCurrentAnimation((
                         Math.abs(vel[0]) > 0 ||  Math.abs(vel[1]) > 0 ?
                                 AnimationComponent.AnimationType.WALK :
@@ -54,7 +55,6 @@ public class MovementSystem extends IteratingSystem {
 
         }
     }
-
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
 

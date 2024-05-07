@@ -27,4 +27,24 @@ public class CameraSystem extends IteratingSystem {
         );
         camera.update();
     }
+
+
+    private void fixBounds() {
+        float scaledViewportWidthHalfExtent = camera.viewportWidth * camera.zoom * 0.5f;
+        float scaledViewportHeightHalfExtent = camera.viewportHeight * camera.zoom * 0.5f;
+
+        int xmax = 1280;
+        int ymax = 720;
+        if (camera.position.x < scaledViewportWidthHalfExtent)
+            camera.position.x = scaledViewportWidthHalfExtent;
+        else if (camera.position.x > xmax - scaledViewportWidthHalfExtent)
+            camera.position.x = xmax - scaledViewportWidthHalfExtent;
+
+        // Vertical
+        if (camera.position.y < scaledViewportHeightHalfExtent)
+            camera.position.y = scaledViewportHeightHalfExtent;
+        else if (camera.position.y > ymax - scaledViewportHeightHalfExtent)
+            camera.position.y = ymax - scaledViewportHeightHalfExtent;
+    }
+
 }

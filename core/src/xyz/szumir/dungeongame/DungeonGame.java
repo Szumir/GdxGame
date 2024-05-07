@@ -14,7 +14,7 @@ public class DungeonGame extends Game {
 	public SpriteBatch batch;
 	@Override
 	public void create () {
-		INSTANCE = new DungeonGame();
+		INSTANCE = this;
 		batch = new SpriteBatch();
 		Assets.load();
 
