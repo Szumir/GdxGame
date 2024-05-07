@@ -15,6 +15,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
+import lombok.Getter;
 import xyz.szumir.dungeongame.component.BodyComponent;
 import xyz.szumir.dungeongame.component.ImageComponent;
 import xyz.szumir.dungeongame.component.TransformComponent;
@@ -34,6 +35,7 @@ public class RenderSystem extends IteratingSystem {
 
     private SpriteBatch spriteBatch;
 
+    @Getter
     private TiledMap tiledMap;
     private TiledMapRenderer tiledMapRenderer;
 

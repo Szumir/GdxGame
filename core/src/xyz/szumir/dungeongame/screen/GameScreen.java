@@ -16,6 +16,8 @@ public class GameScreen implements Screen {
     private World world;
     private Engine engine = new Engine();
 
+    private RenderSystem renderSystem;
+
     @Override
     public void show() {
         world = new World(new Vector2(0,0), true);
@@ -23,8 +25,8 @@ public class GameScreen implements Screen {
         camera.setToOrtho(false, 1280,720);
         camera.translate(256,0);
 
-        engine.addSystem(new RenderSystem(camera, engine, world));
-        engine.addSystem(new CameraSystem(camera));
+        engine.addSystem(renderSystem = new RenderSystem(camera, engine, world));
+        engine.addSystem(new CameraSystem(camera, renderSystem));
         engine.addSystem(new PhysicSystem(world));
         engine.addSystem(new AnimationSystem());
         engine.addSystem(new MovementSystem());
